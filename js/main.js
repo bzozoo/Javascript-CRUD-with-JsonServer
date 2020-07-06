@@ -3,13 +3,13 @@ let keys = ["id", "name", "email"];
 
 // Get data from the server.
 function getServerData(url) {
-    let fetchOpcions = {
+    let fetchOptions = {
         method: "GET",
         mode: "cors",
         cache: "no-cache"
     };
 
-    return fetch(url, fetchOpcions).then(
+    return fetch(url, fetchOptions).then(
         response => response.json(),
         err => console.error(err)
     );
@@ -83,7 +83,7 @@ function createBtnGroup() {
 
 function delRow(btn) {
     let tr = btn.parentElement.parentElement.parentElement;
-    let id = tr.querySelector("td:first-child").value;
+    let id = tr.querySelector("td:first-child").querySelector("input").value;
     let fetchOptions = {
         method: "DELETE",
         mode: "cors",
@@ -140,7 +140,7 @@ function createUser(btn) {
         body: JSON.stringify(data)
     };
 
-    fetch(`http://localhost:3000/users`, fetchOptions).then(
+    fetch('http://localhost:3000/users', fetchOptions).then(
         resp => resp.json(),
         err => console.error(err)
     ).then(
@@ -161,7 +161,7 @@ function getRowData(tr) {
 function setRow(btn) {
     let tr = btn.parentElement.parentElement.parentElement;
     let data = getRowData(tr);
-    let fetchOpcions = {
+    let fetchOptions = {
         method: "PUT",
         mode: "cors",
         cache: "no-cache",
